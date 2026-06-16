@@ -1,21 +1,35 @@
-# Networking Notes
+# Cybersecurity Notes
 
-> Notes created while studying Networking Fundamentals and Cisco Networking Basics.
+My cybersecurity learning journey covering:
 
-## Table of Contents
+- Networking
+- Linux
+- Cybersecurity Fundamentals
+- Web Security
+- HTB Academy
+- Security Tools
 
-1. Network Basics
-2. OSI Model
-3. TCP/IP Model
-4. IPv4 Addressing
-5. IPv6 Basics
-6. DNS
-7. DHCP
-8. Routing
-9. Switching
-10. Common Protocols and Ports
-11. Network Troubleshooting
-12. Cybersecurity Relevance
+## Topics Covered
+
+### Networking
+- Network Basics
+- OSI Model
+- TCP/IP Model
+- IPv4
+- IPv6
+- DNS
+- DHCP
+- Routing
+- Switching
+
+### Cybersecurity
+- Introduction to Cybersecurity
+
+## In Progress
+
+- Linux Fundamentals
+- Cybersecurity Essentials
+- Web Fundamentals
 
 ---
 
