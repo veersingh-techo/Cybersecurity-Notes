@@ -497,6 +497,102 @@ WiFi is a wireless networking technology based on the IEEE 802.11 standard that 
 ### Key Takeaway
 Use WPA2 or WPA3. Avoid WEP.
 ---
+# Analyzing VLAN Tagged Traffic
+
+## VLAN Tagged Traffic
+
+VLAN-tagged packets contain an IEEE 802.1Q VLAN ID.
+
+---
+
+## Wireshark Filters
+
+| Filter | Use |
+|----------|----------|
+| `vlan` | Show all VLAN-tagged packets |
+| `vlan.id == 10` | Show packets from VLAN 10 |
+| `vlan.id == 20` | Show packets from VLAN 20 |
+
+---
+## Tshark Command
+
+| Command | Use |
+|----------|----------|
+| `tshark -r file.pcapng -T fields -e vlan.id \| sort -n -u` | List all unique VLAN IDs in a PCAP file |
+
+---
+
+## Tools
+
+- Wireshark → GUI packet analyzer
+- Tshark → Command-line version of Wireshark
+
+---
+
+## Key Points
+
+- VLAN traffic uses 802.1Q tagging.
+- `vlan` filter shows all VLAN packets.
+- `vlan.id == X` filters a specific VLAN.
+- Tshark can enumerate VLAN IDs from PCAP files.
+---
+# VLAN Attacks
+
+## VLAN Hopping
+
+An attack where an attacker gains access to traffic from another VLAN.
+
+### Requirements
+
+- DTP enabled on switch port
+- Attacker mimics a switch
+
+### Tool
+
+| Tool | Use |
+|--------|--------|
+| Yersinia | Perform VLAN Hopping attacks |
+
+---
+
+## Double-Tagging VLAN Hopping
+
+An attack that uses two 802.1Q VLAN tags to send traffic to another VLAN.
+
+### Requirements
+
+- Attacker must be in the Native VLAN
+- 802.1Q trunking enabled
+
+### Attack Flow
+
+```text
+[VLAN 10][VLAN 30]
+      ↓
+Switch removes VLAN 10
+      ↓
+[VLAN 30]
+      ↓
+Forwarded to VLAN 30
+```
+
+### Tools
+
+| Tool | Use |
+|--------|--------|
+| Yersinia | VLAN Hopping |
+| Scapy | Double-Tagging VLAN Hopping |
+
+---
+
+## Key Points
+
+- VLAN Hopping exploits DTP.
+- Double-Tagging exploits 802.1Q tags.
+- Native VLAN is required for Double-Tagging.
+- Yersinia and Scapy are common VLAN attack tools.
+---
+
 # vpn
 Internet Protocol Security (IPsec) is a network security protocol that provides encryption and authentication for internet communications
 ---
@@ -549,7 +645,47 @@ Advantages:
 | HTTPS | 443 |
 
 ---
+# Assigning a NIC to a VLAN in Linux
 
+## VLAN
+VLAN (Virtual Local Area Network) logically divides a physical network into multiple isolated networks.
+
+## NIC
+NIC (Network Interface Card) is a network adapter used for communication over a network.
+
+Examples:
+- eth0
+- ens33
+- wlan0
+
+## 802.1Q
+IEEE 802.1Q is the VLAN tagging standard that adds VLAN IDs to Ethernet frames.
+
+---
+
+## Important Commands
+
+| Command | Use |
+|----------|----------|
+| `sudo modprobe 8021q` | Load the 802.1Q VLAN kernel module. |
+| `lsmod \| grep 8021` | Verify that the VLAN module is loaded. |
+| `ip a` | Display network interfaces and IP addresses. |
+| `sudo ip link add link eth0 name eth0.20 type vlan id 20` | Create VLAN 20 on interface `eth0`. |
+| `sudo ip addr add 192.168.1.1/24 dev eth0.20` | Assign an IP address to the VLAN interface. |
+| `sudo ip link set up eth0.20` | Bring the VLAN interface UP. |
+| `ip a` | Verify VLAN interface status and IP address. |
+(commanda are in sequence)
+---
+
+## Key Points
+
+- VLAN = Virtual Local Area Network
+- NIC = Network Interface Card
+- 802.1Q = VLAN Tagging Standard
+- `eth0` = Physical Interface
+- `eth0.20` = VLAN 20 Interface
+
+---
 # Network Troubleshooting
 
 ## ping
