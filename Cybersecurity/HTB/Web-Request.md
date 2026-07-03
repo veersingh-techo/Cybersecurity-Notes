@@ -136,7 +136,7 @@ An HTTP Request contains:
 
 ```http
 GET /users/login.html HTTP/1.1
-
+```
 ### Common Request Headers
 
 | Header | Purpose |
@@ -221,3 +221,214 @@ Used to:
 ### Why Important?
 
 The Network tab is one of the most used tools in web application testing and penetration testing.
+
+# HTTP Requests - Practical (HTB)
+
+## HTTP Method
+- Use `curl -v` to view request and response headers.
+- The first line of the request contains the HTTP method.
+
+### Command
+```bash
+curl -v http://<IP>:<PORT>
+```
+
+### Example
+```http
+> GET / HTTP/1.1
+```
+
+**HTTP Method:** `GET`
+
+---
+
+## Server Version
+- Check the `Server` response header to identify the web server and its version.
+
+### Example
+```http
+< Server: Apache/2.4.41 (Ubuntu)
+```
+
+- **Web Server:** Apache
+- **Version:** `2.4.41`
+
+---
+# HTTP Headers (HTB)
+
+## What are HTTP Headers?
+- Metadata sent between **Client** and **Server**.
+- Used in both **HTTP Requests** and **HTTP Responses**.
+- Format:
+```http
+Header-Name: Value
+```
+
+---
+
+## Types of HTTP Headers
+1. **General Headers** – Used in both requests and responses.
+2. **Entity Headers** – Describe the message body/content.
+3. **Request Headers** – Sent by the client.
+4. **Response Headers** – Sent by the server.
+5. **Security Headers** – Improve web security.
+
+---
+
+# cURL Header Options
+
+## `-v` (Verbose)
+Shows:
+- Request Headers
+- Response Headers
+- Response Body
+
+```bash
+curl -v http://example.com
+```
+
+---
+
+## `-I`
+Sends a **HEAD** request and displays **only response headers**.
+
+```bash
+curl -I http://example.com
+```
+
+---
+
+## `-i`
+Displays:
+- Response Headers
+- Response Body
+
+```bash
+curl -i http://example.com
+```
+
+---
+
+## `-A`
+Sets a custom **User-Agent**.
+
+```bash
+curl -A "Mozilla/5.0" http://example.com
+```
+
+Combine with `-v` or `-I` to verify the changed User-Agent.
+
+---
+
+## Quick Revision
+- `-v` → Request + Response Headers + Body
+- `-I` → HEAD request + Response Headers only
+- `-i` → Response Headers + Body
+- `-A` → Change User-Agent
+- **Network Tab** → Analyze requests and responses
+
+# HTTP Methods & Status Codes (HTB)
+
+## HTTP Methods
+
+### GET
+- Retrieve data/resource.
+- Data sent in URL (Query Parameters).
+- Example:
+```http
+GET /page?id=1
+```
+
+### POST
+- Send data to the server.
+- Used for forms, login, file uploads.
+- Data is sent in the **request body**.
+
+### HEAD
+- Same as GET, but **returns headers only** (no body).
+- Used to check resource info.
+
+### PUT
+- Create or replace a resource.
+- Common in REST APIs.
+
+### DELETE
+- Delete a resource.
+- Common in REST APIs.
+
+### OPTIONS
+- Shows supported HTTP methods for a resource.
+
+### PATCH
+- Partially update a resource.
+
+> **Most Important:** `GET`, `POST`, `PUT`, `DELETE`
+
+---
+
+# HTTP Status Codes
+
+## Classes
+- **1xx** → Informational
+- **2xx** → Success
+- **3xx** → Redirection
+- **4xx** → Client Error
+- **5xx** → Server Error
+
+---
+
+## HTB / Pentesting Tips
+- **200** → Resource exists.
+- **302** → Login/redirect detected.
+- **403** → Resource exists but access denied.
+- **404** → Resource doesn't exist.
+- **500** → Server-side issue; may reveal vulnerabilities.
+
+# GET Request
+
+## Key Concepts
+- Default HTTP method used to retrieve data.
+- Parameters are sent in the URL.
+- Example:
+  ```
+  /search.php?search=flag
+  ```
+
+## HTTP Basic Authentication
+- Uses username & password.
+- Credentials are sent in the `Authorization` header.
+- Authenticate with:
+  ```bash
+  curl -u username:password http://IP:PORT
+  ```
+
+## Authorization Header
+- Contains authentication information.
+- View request & headers:
+  ```bash
+  curl -v -u username:password http://IP:PORT
+  ```
+
+## GET Parameters
+- Syntax:
+  ```
+  ?key=value
+  ```
+- Example:
+  ```bash
+  curl -u admin:admin "http://IP:PORT/search.php?search=flag"
+  ```
+
+## Practical Workflow
+1. Open **DevTools → Network**.
+2. Perform the action (Search/Login).
+3. Identify the request URL/API endpoint.
+4. If needed, inspect `script.js` to find hidden endpoints.
+5. Reproduce the request using `curl`.
+
+## Cybersecurity Relevance
+- Analyze browser-server communication.
+- Discover hidden API endpoints.
+- Test HTTP requests manually.
+- Understand authentication headers.
+- Foundation for Web Pentesting & API Testing.
