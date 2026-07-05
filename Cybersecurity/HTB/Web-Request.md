@@ -432,3 +432,212 @@ GET /page?id=1
 - Test HTTP requests manually.
 - Understand authentication headers.
 - Foundation for Web Pentesting & API Testing.
+---
+# POST Requests
+
+## What is POST?
+- Used to send data in the **HTTP Request Body** instead of the URL.
+- Commonly used for:
+  - Login forms
+  - File uploads
+  - Form submissions
+  - JSON/API requests
+
+## Why POST instead of GET?
+- Data is not visible in the URL.
+- Can send large amounts of data.
+- Supports binary/file uploads.
+- Less URL encoding required.
+
+## Basic cURL POST Request
+```bash
+curl -X POST -d "username=admin&password=admin" http://<SERVER_IP>:<PORT>/
+```
+
+- `-X POST` → Use POST method.
+- `-d` → Send request body.
+
+## Cookies
+- After successful login, server sends a **Set-Cookie** header.
+- Browser stores it to keep the user authenticated.
+
+Example:
+```
+Set-Cookie: PHPSESSID=<session_id>
+```
+
+Use the cookie:
+```bash
+curl -b "PHPSESSID=<session_id>" http://<SERVER_IP>:<PORT>/
+```
+
+or
+
+```bash
+curl -H "Cookie: PHPSESSID=<session_id>" http://<SERVER_IP>:<PORT>/
+```
+
+## JSON POST Requests
+
+JSON requests require:
+
+```http
+Content-Type: application/json
+```
+
+Example JSON body:
+
+```json
+{
+  "search": "london"
+}
+```
+
+Example:
+
+```bash
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"search":"london"}' \
+http://<SERVER_IP>/search.php
+```
+
+## Browser DevTools
+Useful tabs:
+- **Network** → Capture requests.
+- **Request** → View headers & body.
+- **Storage/Application** → View cookies.
+
+## Cybersecurity Relevance
+- Essential for Web Application Pentesting.
+- Helps test login forms and authenticated endpoints.
+- Used while interacting with APIs.
+- Required for tools like Burp Suite, cURL, and Postman.
+- Important for Web Security assessments and Bug Bounty.
+---
+# CRUD API
+
+## What is an API?
+- API (Application Programming Interface) allows applications to communicate with a server/database.
+- APIs use HTTP methods to perform operations on resources.
+- Example Endpoint:
+```
+http://<SERVER_IP>:<PORT>/api.php/city/london
+```
+
+---
+
+# CRUD Operations
+
+| Operation | HTTP Method | Purpose |
+|-----------|------------|---------|
+| Create | POST | Add new data |
+| Read | GET | Retrieve data |
+| Update | PUT | Modify existing data |
+| Delete | DELETE | Remove data |
+
+---
+
+# 1. Read (GET)
+
+Retrieve an existing resource.
+
+```bash
+curl http://<SERVER_IP>:<PORT>/api.php/city/london
+```
+
+Pretty JSON output:
+
+```bash
+curl -s http://<SERVER_IP>:<PORT>/api.php/city/london | jq
+```
+
+### Commands
+- `-s` → Silent mode (hide cURL progress).
+- `jq` → Format JSON output for readability.
+
+---
+
+# 2. Create (POST)
+
+Create a new resource.
+
+```bash
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"city_name":"New_HTB_City","country_name":"HTB"}' \
+http://<SERVER_IP>:<PORT>/api.php/city
+```
+
+### Commands
+- `-X POST` → Create data.
+- `-H` → Add request header.
+- `-d` → Send JSON request body.
+
+---
+
+# 3. Update (PUT)
+
+Modify an existing resource.
+
+```bash
+curl -X PUT \
+-H "Content-Type: application/json" \
+-d '{"city_name":"New_HTB_City","country_name":"HTB"}' \
+http://<SERVER_IP>:<PORT>/api.php/city/london
+```
+
+### Commands
+- `-X PUT` → Update existing data.
+- Resource name (`london`) is specified in the URL.
+
+> **PATCH vs PUT**
+- **PUT** → Replace the entire resource.
+- **PATCH** → Update only selected fields.
+
+---
+
+# 4. Delete (DELETE)
+
+Delete a resource.
+
+```bash
+curl -X DELETE \
+http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City
+```
+
+Verify deletion:
+
+```bash
+curl -s http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City | jq
+```
+
+If deleted successfully:
+
+```json
+[]
+```
+
+---
+
+# Important cURL Flags
+
+| Flag | Purpose |
+|------|---------|
+| `-X` | Specify HTTP method |
+| `-H` | Add request headers |
+| `-d` | Send request body |
+| `-s` | Silent mode |
+| `jq` | Pretty-print JSON |
+
+---
+
+# Cybersecurity Relevance
+
+- Test REST APIs.
+- Interact with API endpoints.
+- Understand CRUD operations.
+- Practice API enumeration.
+- Foundation for Burp Suite, Postman, PortSwigger, Bug Bounty, and API Pentesting.
+
+---
