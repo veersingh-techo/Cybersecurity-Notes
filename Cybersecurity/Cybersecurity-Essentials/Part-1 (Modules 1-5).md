@@ -146,3 +146,82 @@ Social engineering manipulates people into revealing confidential information or
 - Social engineering targets people rather than technology.
 - Malware, network attacks, and web attacks are common attack vectors.
 - Strong authentication, regular updates, user awareness, and layered security significantly reduce cyber risks.
+
+# Module 2: Securing Networks - Summary
+
+## Current State of Affairs
+
+- Network security protects an organization's data, systems, and business continuity.
+- Security breaches can cause:
+  - Financial loss
+  - Data theft
+  - Privacy violations
+  - Reputation damage
+  - Legal issues
+- An **attack vector** is the path used by an attacker to gain access to a system or network.
+- Valuable assets include:
+  - Customer data
+  - Intellectual property
+  - Business information
+- **Data Loss Prevention (DLP)** combines policies, processes, and technologies to protect sensitive data.
+- Common data loss vectors:
+  - Email
+  - Social media
+  - Cloud storage
+  - USB/removable media
+  - Unencrypted devices
+  - Printed documents
+  - Improper access control
+
+---
+
+## Who is Attacking Our Network?
+
+### Key Terms
+
+- **Threat** – A potential danger to a system.
+- **Vulnerability** – A weakness that can be exploited.
+- **Exploit** – A method used to take advantage of a vulnerability.
+- **Attack Surface** – All possible entry points into a system.
+- **Risk** – The likelihood and impact of a threat exploiting a vulnerability.
+
+### Risk Management Strategies
+
+- **Risk Acceptance** – Accept the risk.
+- **Risk Avoidance** – Eliminate the risky activity.
+- **Risk Reduction** – Implement security controls.
+- **Risk Transfer** – Transfer risk (e.g., insurance or third-party services).
+
+### Types of Hackers
+
+- **White Hat** – Ethical security professionals.
+- **Gray Hat** – May violate rules without malicious intent.
+- **Black Hat** – Criminal attackers.
+
+### Threat Actors
+
+- Script Kiddies
+- Cybercriminals
+- Hacktivists
+- Vulnerability Brokers
+- State-Sponsored Attackers
+
+### Indicators of Compromise (IOCs)
+
+- Evidence that a system has been compromised.
+- Sharing IOCs helps detect and prevent attacks.
+
+### Cybersecurity Organizations
+
+- **CISA** – Cybersecurity and Infrastructure Security Agency.
+- **NCSA** – National Cyber Security Alliance.
+
+---
+
+## Key Takeaways
+
+- Protect sensitive data using multiple security controls.
+- Reduce the attack surface whenever possible.
+- Understand threats, vulnerabilities, exploits, and risks.
+- Apply appropriate risk management strategies.
+- Different threat actors have different motivations and capabilities.
