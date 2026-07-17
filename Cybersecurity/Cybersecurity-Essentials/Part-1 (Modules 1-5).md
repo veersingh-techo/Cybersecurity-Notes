@@ -225,3 +225,73 @@ Social engineering manipulates people into revealing confidential information or
 - Understand threats, vulnerabilities, exploits, and risks.
 - Apply appropriate risk management strategies.
 - Different threat actors have different motivations and capabilities.
+
+# Module 3 - Attacking the Foundation (Short Notes)
+
+## 1. IP PDU Details
+- IP is a Layer 3 **connectionless** protocol.
+- IPv4 header has more fields than IPv6.
+- Understanding IP headers helps in network analysis and security.
+
+---
+
+## 2. IP Vulnerabilities
+
+### Common IP Attacks
+- ICMP Attacks
+- DoS (Denial of Service)
+- DDoS (Distributed Denial of Service)
+- IP Address Spoofing
+- Man-in-the-Middle (MITM)
+- Session Hijacking
+
+### ICMP
+- Used for diagnostics (Ping).
+- Can be abused for reconnaissance, scanning, DoS, and DDoS.
+
+### IP Spoofing
+- Attacker sends packets using a fake source IP address.
+- Used to hide identity or bypass simple filtering.
+
+### MITM
+- Attacker secretly intercepts communication between two devices.
+
+### Session Hijacking
+- Attacker steals an active session to impersonate a legitimate user.
+
+---
+
+## 3. TCP & UDP Vulnerabilities
+
+### TCP Features
+- Reliable communication.
+- Flow control.
+- Stateful communication.
+- Uses the **Three-Way Handshake**:
+  1. SYN
+  2. SYN-ACK
+  3. ACK
+
+### Common TCP Attacks
+- TCP Port Scan
+- SYN Flood Attack
+- TCP Reset (RST) Attack
+- TCP Session Hijacking
+
+### UDP Features
+- Connectionless.
+- Faster than TCP.
+- No reliability or acknowledgments.
+
+### UDP Attack
+- UDP Flood Attack
+- Can overload a target and cause DoS.
+
+---
+
+## Exam Points
+- IP works at **Layer 3**.
+- TCP and UDP work at **Layer 4**.
+- TCP uses **Three-Way Handshake**.
+- Know the difference between **DoS and DDoS**.
+- Remember **IP Spoofing, MITM, Session Hijacking, SYN Flood, UDP Flood**.
